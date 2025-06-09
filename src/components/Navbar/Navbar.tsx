@@ -1,4 +1,3 @@
-import React from 'react';
 import './Navbar.css';
 import { IoMailOutline } from 'react-icons/io5';
 
