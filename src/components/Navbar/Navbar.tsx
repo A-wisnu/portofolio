@@ -7,8 +7,12 @@ const Navbar = () => {
       <div className="navbar-container">
         <div className="navbar-logo">WISNU HIDAYAT</div>
         <div className="navbar-right">
-          <IoMailOutline className="search-icon" />
-          <button className="connect-wallet-btn">Contact Me</button>
+          <a href="https://wa.me/6285643025633" target="_blank" rel="noopener noreferrer">
+            <IoMailOutline className="search-icon" />
+          </a>
+          <a href="https://wa.me/6285643025633" target="_blank" rel="noopener noreferrer" className="connect-wallet-btn">
+            Contact Me
+          </a>
         </div>
       </div>
     </nav>
