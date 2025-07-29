@@ -9,7 +9,7 @@
   pointer-events: none;
 }
 
-/* Matrix rain effect */
+/* Matrix rain effect - Optimized for better performance */
 .matrix-rain {
   position: absolute;
   top: 0;
@@ -24,62 +24,65 @@
   font-size: 8px;
   color: var(--primary-green);
   text-shadow: 0 0 5px var(--primary-green);
-  opacity: 0.7;
+  opacity: 0.3; /* Reduced opacity for subtlety */
   animation: matrixFall linear infinite;
+  /* Reduced animation will-change for better performance */
+  will-change: transform, opacity;
 }
 
 .matrix-char-1 {
   left: 10%;
-  animation-duration: 8s;
+  animation-duration: 20s; /* Increased duration for slower movement */
   animation-delay: 0s;
 }
 
 .matrix-char-2 {
   left: 25%;
-  animation-duration: 12s;
-  animation-delay: 2s;
+  animation-duration: 25s; /* Increased duration */
+  animation-delay: 5s; /* Increased delay */
   color: var(--secondary-cyan);
   text-shadow: 0 0 5px var(--secondary-cyan);
 }
 
 .matrix-char-3 {
   left: 40%;
-  animation-duration: 10s;
-  animation-delay: 4s;
+  animation-duration: 22s; /* Increased duration */
+  animation-delay: 8s; /* Increased delay */
 }
 
 .matrix-char-4 {
   left: 60%;
-  animation-duration: 15s;
-  animation-delay: 1s;
+  animation-duration: 30s; /* Increased duration */
+  animation-delay: 3s;
   color: var(--accent-purple);
   text-shadow: 0 0 5px var(--accent-purple);
 }
 
 .matrix-char-5 {
   left: 80%;
-  animation-duration: 9s;
-  animation-delay: 3s;
+  animation-duration: 28s; /* Increased duration */
+  animation-delay: 10s; /* Increased delay */
 }
 
+/* Optimized matrix fall animation */
 @keyframes matrixFall {
   0% {
-    transform: translateY(-100vh) rotate(0deg);
+    transform: translateY(-100vh);
     opacity: 0;
   }
   10% {
-    opacity: 0.7;
+    opacity: 0.3; /* Reduced opacity */
   }
   90% {
-    opacity: 0.7;
+    opacity: 0.3; /* Reduced opacity */
   }
   100% {
-    transform: translateY(100vh) rotate(360deg);
+    transform: translateY(100vh);
     opacity: 0;
   }
 }
 
-/* Floating pixel grid */
+/* Floating pixel grid - Optimized */
 .pixel-grid {
   position: absolute;
   top: 0;
@@ -94,19 +97,20 @@
   height: 2px;
   background: var(--primary-green);
   box-shadow: 0 0 2px var(--primary-green);
-  animation: pixelFloat 20s infinite linear;
+  animation: pixelFloat 40s infinite linear; /* Much slower movement */
+  opacity: 0.4; /* Reduced opacity */
 }
 
 .pixel-dot-1 {
   top: 20%;
   left: 15%;
-  animation-duration: 25s;
+  animation-duration: 50s; /* Much slower */
 }
 
 .pixel-dot-2 {
   top: 60%;
   left: 75%;
-  animation-duration: 18s;
+  animation-duration: 45s; /* Much slower */
   background: var(--secondary-cyan);
   box-shadow: 0 0 2px var(--secondary-cyan);
 }
@@ -114,7 +118,7 @@
 .pixel-dot-3 {
   top: 80%;
   left: 30%;
-  animation-duration: 22s;
+  animation-duration: 55s; /* Much slower */
   background: var(--accent-purple);
   box-shadow: 0 0 2px var(--accent-purple);
 }
@@ -122,30 +126,36 @@
 .pixel-dot-4 {
   top: 40%;
   left: 90%;
-  animation-duration: 28s;
+  animation-duration: 60s; /* Much slower */
   background: var(--warning-orange);
   box-shadow: 0 0 2px var(--warning-orange);
 }
 
+/* Much more subtle pixel float animation */
 @keyframes pixelFloat {
   0% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate(0, 0);
+    opacity: 0.4;
   }
   25% {
-    transform: translate(50px, -30px) rotate(90deg);
+    transform: translate(20px, -15px); /* Reduced movement */
+    opacity: 0.6;
   }
   50% {
-    transform: translate(-30px, 40px) rotate(180deg);
+    transform: translate(-15px, 20px); /* Reduced movement */
+    opacity: 0.2;
   }
   75% {
-    transform: translate(-50px, -20px) rotate(270deg);
+    transform: translate(-20px, -10px); /* Reduced movement */
+    opacity: 0.5;
   }
   100% {
-    transform: translate(0, 0) rotate(360deg);
+    transform: translate(0, 0);
+    opacity: 0.4;
   }
 }
 
-/* Glitch overlay lines */
+/* Glitch overlay lines - Much more subtle */
 .glitch-lines {
   position: absolute;
   top: 0;
@@ -160,7 +170,7 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
   opacity: 0;
-  animation: glitchSweep 8s infinite;
+  animation: glitchSweep 20s infinite; /* Much slower */
 }
 
 .glitch-line-1 {
@@ -170,23 +180,24 @@
 
 .glitch-line-2 {
   top: 50%;
-  animation-delay: 2.5s;
+  animation-delay: 7s; /* Increased delay */
   background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
 }
 
 .glitch-line-3 {
   top: 80%;
-  animation-delay: 5s;
+  animation-delay: 14s; /* Increased delay */
   background: linear-gradient(90deg, transparent, var(--secondary-cyan), transparent);
 }
 
+/* Much more subtle glitch sweep */
 @keyframes glitchSweep {
-  0%, 90% {
+  0%, 95% {
     opacity: 0;
     transform: translateX(-100%);
   }
-  5%, 15% {
-    opacity: 1;
+  2%, 8% {
+    opacity: 0.3; /* Reduced opacity */
     transform: translateX(100%);
   }
   100% {
@@ -195,7 +206,7 @@
   }
 }
 
-/* Floating geometric shapes */
+/* Floating geometric shapes - Optimized */
 .retro-shapes {
   position: absolute;
   top: 0;
@@ -207,7 +218,8 @@
 .retro-shape {
   position: absolute;
   border: 1px solid var(--primary-green);
-  animation: retroFloat 15s infinite ease-in-out;
+  animation: retroFloat 30s infinite ease-in-out; /* Much slower */
+  opacity: 0.4; /* Reduced opacity */
 }
 
 .triangle {
@@ -218,7 +230,7 @@
   border-bottom: 15px solid var(--primary-green);
   top: 30%;
   left: 70%;
-  animation-duration: 20s;
+  animation-duration: 40s; /* Much slower */
   filter: drop-shadow(0 0 5px var(--primary-green));
 }
 
@@ -229,8 +241,8 @@
   border: 1px solid var(--secondary-cyan);
   top: 70%;
   left: 20%;
-  animation-duration: 18s;
-  animation-delay: 3s;
+  animation-duration: 35s; /* Much slower */
+  animation-delay: 8s; /* Increased delay */
   filter: drop-shadow(0 0 3px var(--secondary-cyan));
 }
 
@@ -242,8 +254,8 @@
   transform: rotate(45deg);
   top: 15%;
   left: 85%;
-  animation-duration: 25s;
-  animation-delay: 6s;
+  animation-duration: 45s; /* Much slower */
+  animation-delay: 15s; /* Increased delay */
   filter: drop-shadow(0 0 4px var(--accent-purple));
 }
 
@@ -255,8 +267,8 @@
   position: relative;
   top: 85%;
   left: 50%;
-  animation-duration: 22s;
-  animation-delay: 9s;
+  animation-duration: 50s; /* Much slower */
+  animation-delay: 20s; /* Increased delay */
   filter: drop-shadow(0 0 3px var(--warning-orange));
 }
 
@@ -279,21 +291,83 @@
   border-top: 4px solid var(--warning-orange);
 }
 
+/* Much more subtle retro float animation */
 @keyframes retroFloat {
   0%, 100% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0.6;
-  }
-  25% {
-    transform: translate(30px, -40px) rotate(90deg);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-20px, 30px) rotate(180deg);
+    transform: translate(0, 0);
     opacity: 0.4;
   }
+  25% {
+    transform: translate(15px, -20px); /* Reduced movement */
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-10px, 15px); /* Reduced movement */
+    opacity: 0.2;
+  }
   75% {
-    transform: translate(-40px, -20px) rotate(270deg);
-    opacity: 0.8;
+    transform: translate(-15px, -10px); /* Reduced movement */
+    opacity: 0.5;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .background-animation {
+    /* Reduce overall complexity on mobile */
+    opacity: 0.7;
+  }
+  
+  .matrix-char {
+    opacity: 0.2; /* Further reduced opacity */
+    font-size: 6px; /* Smaller font size */
+  }
+  
+  .pixel-dot {
+    opacity: 0.3; /* Further reduced opacity */
+    width: 1px; /* Smaller dots */
+    height: 1px;
+  }
+  
+  .glitch-line {
+    opacity: 0.1; /* Much more subtle */
+  }
+  
+  .retro-shape {
+    opacity: 0.3; /* Further reduced opacity */
+  }
+  
+  /* Disable resource-intensive animations on mobile */
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-char,
+    .pixel-dot,
+    .glitch-line,
+    .retro-shape {
+      animation: none !important;
+    }
+  }
+}
+
+/* Extra small mobile devices - minimal animations */
+@media (max-width: 480px) {
+  .background-animation {
+    opacity: 0.5; /* Even more subtle */
+  }
+  
+  .matrix-char {
+    opacity: 0.1;
+    font-size: 4px;
+  }
+  
+  .pixel-dot {
+    opacity: 0.2;
+  }
+  
+  .glitch-line {
+    display: none; /* Hide glitch lines on very small screens */
+  }
+  
+  .retro-shape {
+    opacity: 0.2;
   }
 } 

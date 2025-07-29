@@ -274,24 +274,90 @@
   z-index: 2;
 }
 
-/* Responsive Styles */
+/* Responsive Styles - Enhanced for mobile stability */
 @media (max-width: 768px) {
   .navbar {
     font-size: 6px;
+    padding: 0.8rem 0;
+  }
+  
+  .navbar-container {
+    width: 95%; /* Slightly wider on mobile */
+    padding: 0 0.5rem;
   }
   
   .navbar-logo {
-    font-size: 8px;
+    font-size: clamp(7px, 2.5vw, 10px); /* Responsive font sizing */
     padding: 6px 10px;
+  }
+  
+  /* Reduce hover effects on mobile */
+  .navbar-logo:hover {
+    animation: none; /* Disable glitch animation */
+    transform: none;
   }
 
   .connect-wallet-btn {
-    padding: 6px 12px;
-    font-size: 6px;
+    padding: 8px 12px;
+    font-size: clamp(6px, 2vw, 8px); /* Responsive font sizing */
+    min-height: 40px; /* Better touch target */
+    min-width: 80px; /* Ensure minimum width */
+  }
+  
+  /* Reduce hover effects on mobile */
+  .connect-wallet-btn:hover {
+    transform: translateY(-1px); /* Reduced movement */
   }
   
   .search-icon {
     font-size: 14px;
+    padding: 8px;
+    min-height: 40px; /* Better touch target */
+    min-width: 40px;
+  }
+  
+  /* Reduce hover effects on mobile */
+  .search-icon:hover {
+    transform: scale(1.05); /* Reduced scaling */
+  }
+  
+  /* Disable problematic animations on mobile */
+  .navbar::before {
+    animation: none; /* Disable pixel sweep animation */
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .navbar {
+    font-size: 5px;
+    padding: 0.6rem 0;
+  }
+  
+  .navbar-container {
+    width: 98%;
+  }
+  
+  .navbar-logo {
+    font-size: clamp(6px, 2vw, 8px);
+    padding: 5px 8px;
+  }
+  
+  .connect-wallet-btn {
+    padding: 6px 10px;
+    font-size: clamp(5px, 1.8vw, 7px);
+    min-height: 36px;
+    min-width: 70px;
+  }
+  
+  .search-icon {
+    font-size: 12px;
     padding: 6px;
+    min-height: 36px;
+    min-width: 36px;
+  }
+  
+  .navbar-right {
+    gap: 0.5rem; /* Reduced gap on very small screens */
   }
 } 

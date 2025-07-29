@@ -16,7 +16,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Scanline effect overlay */
+/* Scanline effect overlay - Made much more subtle */
 body::before {
   content: '';
   position: fixed;
@@ -28,15 +28,15 @@ body::before {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 255, 65, 0.03) 2px,
-    rgba(0, 255, 65, 0.03) 4px
+    rgba(0, 255, 65, 0.01) 2px,
+    rgba(0, 255, 65, 0.01) 4px
   );
   pointer-events: none;
   z-index: 1000;
-  animation: scanlines 0.1s linear infinite;
+  /* Removed animation to stop constant movement */
 }
 
-/* CRT flicker effect */
+/* CRT flicker effect - Made much more subtle */
 body::after {
   content: '';
   position: fixed;
@@ -44,20 +44,18 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 255, 65, 0.02);
+  background: rgba(0, 255, 65, 0.005);
   pointer-events: none;
   z-index: 999;
-  animation: flicker 0.15s infinite linear alternate;
+  /* Removed animation to stop constant movement */
 }
 
-@keyframes scanlines {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(4px); }
-}
+/* Removed scanlines keyframes as it's no longer needed */
 
+/* Reduced flicker animation to be much more subtle */
 @keyframes flicker {
   0% { opacity: 1; }
-  100% { opacity: 0.98; }
+  100% { opacity: 0.995; }
 }
 
 a {
@@ -110,4 +108,68 @@ ul {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-cyan);
+}
+
+/* Mobile-first improvements */
+@media (max-width: 768px) {
+  body {
+    font-size: 12px; /* Larger base font for mobile */
+    line-height: 1.6;
+    /* Disable problematic animations on mobile */
+    animation: none;
+  }
+  
+  /* Reduce scanline effect on mobile */
+  body::before {
+    opacity: 0.5;
+    background-size: 100% 6px; /* Larger scanlines for mobile */
+  }
+  
+  /* Disable flicker on mobile for better performance */
+  body::after {
+    display: none;
+  }
+  
+  /* Improve touch targets */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better text rendering on mobile */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Slightly reduced animations for tablet */
+  body::before {
+    opacity: 0.7;
+  }
+  
+  body::after {
+    opacity: 0.8;
+  }
 }

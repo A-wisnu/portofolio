@@ -427,7 +427,7 @@
   box-shadow: 0 0 6px var(--accent-purple);
 }
 
-/* Responsive Styles */
+/* Responsive Styles - Enhanced for mobile stability */
 @media (max-width: 768px) {
   .projects-section {
     padding: 2rem 1rem;
@@ -441,12 +441,12 @@
   }
 
   .projects-title {
-    font-size: 8vw;
+    font-size: clamp(1.5rem, 6vw, 2.5rem); /* Better responsive scaling */
   }
 
   .projects-info {
     max-width: 100%;
-    font-size: 7px;
+    font-size: clamp(6px, 2vw, 8px); /* Responsive font sizing */
     padding: 10px;
   }
   
@@ -459,23 +459,83 @@
     width: 35px;
     height: 35px;
     font-size: 10px;
+    /* Reduce hover effects on mobile */
+  }
+  
+  .nav-arrow:hover {
+    transform: scale(1.05) translateY(-1px); /* Reduced movement */
   }
 
   .project-card-title {
-    font-size: 8px;
+    font-size: clamp(7px, 2.5vw, 10px); /* Responsive font sizing */
   }
 
   .project-card-description {
-    font-size: 6px;
+    font-size: clamp(5px, 2vw, 7px); /* Responsive font sizing */
+    line-height: 1.8; /* Better line height for mobile */
   }
 
   .tech-tag {
-    font-size: 5px;
+    font-size: clamp(4px, 1.5vw, 6px); /* Responsive font sizing */
     padding: 3px 6px;
   }
 
   .bid-now-btn {
-    font-size: 7px;
+    font-size: clamp(6px, 2vw, 8px); /* Responsive font sizing */
     padding: 10px 14px;
+    min-height: 44px; /* Better touch target */
+  }
+  
+  /* Reduce hover effects on mobile for better performance */
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01); /* Reduced movement */
+  }
+  
+  .bid-now-btn:hover {
+    transform: translateY(-1px); /* Reduced movement */
+  }
+  
+  /* Disable problematic animations on mobile */
+  .project-card::before {
+    animation: none; /* Disable cartridge glow animation */
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .projects-title {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+  }
+  
+  .projects-nav {
+    gap: 0.5rem;
+  }
+  
+  .nav-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 8px;
+  }
+  
+  .project-card-title {
+    font-size: clamp(6px, 2vw, 8px);
+  }
+  
+  .project-card-description {
+    font-size: clamp(4px, 1.8vw, 6px);
+  }
+  
+  .tech-tag {
+    font-size: clamp(3px, 1.2vw, 5px);
+    padding: 2px 4px;
+  }
+  
+  .bid-now-btn {
+    font-size: clamp(5px, 1.8vw, 7px);
+    padding: 8px 12px;
   }
 } 
