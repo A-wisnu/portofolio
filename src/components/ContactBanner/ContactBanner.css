@@ -1,11 +1,56 @@
 .contact-banner-container {
   padding: 6rem 2rem;
-  background-color: transparent;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 50%, var(--bg-light) 100%);
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  border-top: 3px solid var(--primary-green);
+  border-bottom: 3px solid var(--primary-green);
+}
+
+/* Pixel grid background */
+.contact-banner-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(var(--primary-green) 1px, transparent 1px),
+    linear-gradient(90deg, var(--primary-green) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  z-index: 0;
+  animation: gridShift 10s infinite linear;
+}
+
+@keyframes gridShift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+/* Digital noise overlay */
+.contact-banner-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
+  z-index: 1;
+  animation: digitalNoise 8s infinite ease-in-out;
+}
+
+@keyframes digitalNoise {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
 }
 
 .checkerboard-bg {
@@ -13,99 +58,265 @@
   width: 150%;
   height: 150%;
   background-image:
-    linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
-    linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
-  background-size: 100px 100px;
+    linear-gradient(45deg, rgba(0, 255, 65, 0.1) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 255, 65, 0.1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0, 255, 65, 0.1) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 255, 65, 0.1) 75%);
+  background-size: 40px 40px;
   background-position: center;
   transform: rotate(-30deg) scale(1.5);
-  opacity: 0.3;
+  opacity: 0.2;
   z-index: 0;
+  animation: checkerboardMove 15s infinite linear;
+}
+
+@keyframes checkerboardMove {
+  0% { transform: rotate(-30deg) scale(1.5) translate(0, 0); }
+  100% { transform: rotate(-30deg) scale(1.5) translate(40px, 40px); }
 }
 
 .content-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .character-image {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   height: 400px;
   max-width: none;
-  filter: grayscale(1) brightness(0.9);
-  transition: transform 0.3s ease;
+  filter: 
+    contrast(1.3) 
+    saturate(0.7) 
+    brightness(1.1)
+    sepia(0.2)
+    hue-rotate(120deg);
+  transition: all 0.4s ease;
+  border: 3px solid var(--primary-green);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  box-shadow: 
+    0 0 30px var(--primary-green),
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+}
+
+.character-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 65, 0.1) 2px,
+    rgba(0, 255, 65, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .contact-banner-container:hover .character-image {
-    transform: scale(1.05);
+  transform: scale(1.05) translateY(-5px);
+  filter: 
+    contrast(1.4) 
+    saturate(1) 
+    brightness(1.2)
+    sepia(0.1)
+    hue-rotate(120deg);
+  box-shadow: 
+    0 0 40px var(--secondary-cyan),
+    inset 0 0 30px rgba(0, 255, 255, 0.15);
+  border-color: var(--secondary-cyan);
 }
 
 .contact-text-content {
-  z-index: 3;
+  z-index: 4;
   text-align: left;
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+  border: 2px solid var(--primary-green);
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  box-shadow: 
+    0 0 25px rgba(0, 255, 65, 0.3),
+    inset 0 0 20px rgba(0, 255, 65, 0.05);
+}
+
+.contact-text-content::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  height: 20px;
+  background: linear-gradient(90deg, var(--primary-green), var(--secondary-cyan));
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  z-index: -1;
+}
+
+.contact-text-content::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-purple);
+  box-shadow: 0 0 10px var(--accent-purple);
+  animation: pixelBlink 2s infinite;
 }
 
 .contact-link {
   text-decoration: none;
+  display: block;
 }
 
 .main-text {
-  font-family: 'Anton', sans-serif;
-  font-size: 8rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1;
-  text-shadow: 3px 3px 0px #1a1a1a;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--primary-green);
+  line-height: 1.2;
+  text-shadow: 
+    0 0 10px var(--primary-green),
+    0 0 20px var(--primary-green),
+    2px 2px 0px var(--bg-dark);
+  transition: all 0.4s ease;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.main-text::before {
+  content: '> ';
+  color: var(--secondary-cyan);
+  animation: blink 2s infinite;
 }
 
 .main-text:hover {
-  color: #c0ff00;
-  text-shadow: 3px 3px 0px #000, 0 0 20px #c0ff00;
+  color: var(--secondary-cyan);
+  text-shadow: 
+    0 0 15px var(--secondary-cyan),
+    0 0 30px var(--secondary-cyan),
+    2px 2px 0px var(--bg-dark);
+  animation: textGlitch 0.5s ease-in-out;
+}
+
+@keyframes textGlitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+    filter: hue-rotate(180deg);
+  }
+  60% {
+    transform: translate(1px, 1px);
+    filter: hue-rotate(270deg);
+  }
+  80% {
+    transform: translate(1px, -1px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.text-contact {
+  display: block;
+  margin-bottom: 8px;
 }
 
 .text-me {
-    padding-left: 2rem;
+  display: block;
+  color: var(--warning-orange);
+  text-shadow: 
+    0 0 10px var(--warning-orange),
+    0 0 20px var(--warning-orange),
+    2px 2px 0px var(--bg-dark);
+  padding-left: 1rem;
 }
 
 .tagline {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  color: #a0a0a0;
-  margin-top: 1rem;
-  max-width: 450px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--text-dim);
+  margin-top: 1.5rem;
+  max-width: 400px;
+  line-height: 1.6;
+  position: relative;
+  padding: 12px;
+  border: 1px solid var(--text-dim);
+  background: rgba(136, 204, 136, 0.05);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.tagline::before {
+  content: 'MSG: ';
+  color: var(--secondary-cyan);
+  font-size: 6px;
+}
+
+/* Terminal cursor effect */
+.tagline::after {
+  content: '_';
+  color: var(--primary-green);
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes pixelBlink {
+  0%, 70% { opacity: 0; }
+  71%, 100% { opacity: 1; }
 }
 
 @media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column-reverse;
-        gap: 1rem;
-    }
-    .main-text {
-        font-size: 15vw;
-        text-align: center;
-    }
-    .text-me {
-        padding-left: 1rem;
-    }
-    .contact-text-content {
-        text-align: center;
-    }
-    .character-image {
-        height: 280px;
-        opacity: 0.8;
-    }
-    .tagline {
-        font-size: 0.9rem;
-        max-width: 90%;
-        margin: 1rem auto 0;
-    }
+  .contact-banner-container {
+    padding: 4rem 1rem;
+  }
+
+  .content-wrapper {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .main-text {
+    font-size: 8vw;
+    text-align: center;
+  }
+
+  .text-me {
+    padding-left: 0.5rem;
+  }
+
+  .contact-text-content {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .character-image {
+    height: 250px;
+  }
+
+  .tagline {
+    font-size: 7px;
+    max-width: 100%;
+    margin: 1rem auto 0;
+    padding: 10px;
+  }
 } 
