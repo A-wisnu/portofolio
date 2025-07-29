@@ -1,5 +1,5 @@
 import './Navbar.css';
-import { IoMailOutline } from 'react-icons/io5';
+import { IoLogoWhatsapp } from 'react-icons/io5';
 
 const Navbar = () => {
   return (
@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="navbar-logo">WISNU HIDAYAT</div>
         <div className="navbar-right">
           <a href="https://wa.me/6285643025633" target="_blank" rel="noopener noreferrer">
-            <IoMailOutline className="search-icon" />
+            <IoLogoWhatsapp className="search-icon" />
           </a>
           <a href="https://wa.me/6285643025633" target="_blank" rel="noopener noreferrer" className="connect-wallet-btn">
             Contact Me
